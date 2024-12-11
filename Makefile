@@ -34,6 +34,12 @@ test:
 # Targets rely on implicit rules for compiling and linking
 tag_remover: tag_remover.o
 
+find_primes: find_primes.o
+
+test_find_primes: test_find_primes.o find_primes.o
+
+print_primes: find_primes.o print_primes.o
+
 # Phony targets
 .PHONY: all test clean distclean
 
