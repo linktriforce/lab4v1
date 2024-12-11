@@ -25,7 +25,7 @@ LDFLAGS += -fsanitize=address
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = tag_remover
+PROGS = tag_remover test_find_primes print_primes
 
 all: $(PROGS)
 

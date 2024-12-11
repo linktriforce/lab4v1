@@ -5,7 +5,7 @@ void findPrimes(std::string& s) {
 
     auto start = s.find_first_of('P');
     do {
-        if(s[start == 'P']) {
+        if(s[start] == 'P') {
             setMultiples(s, start);
         }
         ++start;
