@@ -1,4 +1,4 @@
 *.o
 *.d
 
-.vscode/settings.json
+.vscode/
