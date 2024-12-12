@@ -1,12 +1,11 @@
-#include <ctime> // time and localtime
+#include <ctime>   // time and localtime
 #include <iomanip> // for setw and setfill
 #include <iostream>
+using std::cout;
 using std::setfill;
 using std::setw;
-using std::cout;
 
 #include "date.h"
-
 
 int Date::daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -23,32 +22,25 @@ Date::Date(int y, int m, int d) : year(y), month(m), day(d) {}
 
 std::istream &operator>>(std::istream &is, Date &date)
 {
-	int y=0, m=0, d=0;
+	int y = 0, m = 0, d = 0;
 	char dash = '-';
-	int numbers;
-	if (is >> y >> dash >> m >> dash >> d && date.validDate(y, m , d))
+	if (is >> y >> dash >> m >> dash >> d && date.validDate(y, m, d))
 	{
 		date = Date(y, m, d);
 	}
-	else {
+	else
+	{
 		is.setstate(std::ios_base::failbit);
 	}
 	return is;
 }
 
-std::ostream &operator<<(std::ostream &os,const Date &d)
+std::ostream &operator<<(std::ostream &os, const Date &d)
 {
 	os << setw(4) << setfill('0') << d.getYear() << '-'
 	   << setw(2) << setfill('0') << d.getMonth() << '-'
 	   << setw(2) << setfill('0') << d.getDay();
 	return os;
-}
-
-void print(const Date &d)
-{
-	cout << setw(4) << setfill('0') << d.getYear() << '-';
-	cout << setw(2) << setfill('0') << d.getMonth() << '-';
-	cout << setw(2) << setfill('0') << d.getDay();
 }
 
 int Date::getYear() const
