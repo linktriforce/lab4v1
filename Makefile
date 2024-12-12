@@ -44,6 +44,8 @@ test_to_string: test_to_string.o date.o
 
 date_test: date_test.o date.o
 
+test_string_cast: test_string_cast.o date.o 
+
 # Phony targets
 .PHONY: all test clean distclean
 
