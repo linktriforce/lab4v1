@@ -8,24 +8,12 @@ using std::endl;
 using std::setfill;
 using std::setw;
 
-/*
- * Prints the date d in the format yyyy-mm-dd. You shall replace this
- * function with an overloaded operator<<, and add an overloaded operator>>.
- *
- */
-void print(const Date &d)
-{
-	cout << setw(4) << setfill('0') << d.getYear() << '-';
-	cout << setw(2) << setfill('0') << d.getMonth() << '-';
-	cout << setw(2) << setfill('0') << d.getDay();
-}
-
 int main()
 {
 	// Check input and output of dates. Uncomment the following when you
 	// have added operator>> and operator<<.
+#if 0
 	bool cont = true;
-
 	while (cont)
 	{
 		cout << "Type a date: ";
@@ -33,11 +21,13 @@ int main()
 		cin >> aDate;
 		if (cin.eof())
 		{
+			// TODO: Never reached in this example? Can it be achived with user input?
+			// Set flag as in cin.good?
 			cont = false;
 		}
 		else if (!cin.good())
 		{
-			cout << "Wrong input format" << endl;
+			cout << "Wrong input format. e.g '2012-10-01" << endl;
 			// restore stream state and ignore the rest of the line
 			cin.clear();
 			cin.ignore(10000, '\n');
@@ -47,26 +37,27 @@ int main()
 			cout << "Output: " << aDate << endl;
 		}
 	}
-
+#else
 	// Check 'next' by creating an object describing today's date, then
 	// printing dates more than a month ahead
 	cout << "--- Today and more than a month ahead:" << endl;
 	Date d1;
-	print(d1);
+	cout << d1;
 	cout << endl;
 	for (int i = 1; i <= 35; ++i)
 	{
 		d1.next();
-		print(d1);
+		cout << d1;
 		cout << endl;
 	}
 
 	// Check so 'next' functions correctly from one year to the next
 	cout << "--- New Year's Eve and the next day:" << endl;
 	Date d2(2013, 12, 31);
-	print(d2);
+	cout << d2;
 	cout << endl;
 	d2.next();
-	print(d2);
+	cout << d2;
 	cout << endl;
+#endif
 }

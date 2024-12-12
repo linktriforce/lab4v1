@@ -3,6 +3,12 @@
 
 #include <iostream>
 #include <istream>
+#include <ctime>   // time and localtime
+#include <iomanip> // for setw and setfill
+
+using std::cout;
+using std::setfill;
+using std::setw;
 
 class Date
 {
