@@ -14,6 +14,8 @@ public:
 	int getDay() const;        // get the day
 	void next();               // advance to next day
 	bool validDate(int y, int m, int d);
+	friend std::ostream &operator<<(std::ostream &os, Date &d);
+	friend std::istream &operator>>(std::istream &is, Date &date);
 
 private:
 	int year;  // the year (four digits)
