@@ -8,31 +8,6 @@ using std::endl;
 using std::setfill;
 using std::setw;
 
-// Output operator<< for printing Date in yyyy-mm-dd format
-std::ostream &operator<<(std::ostream &os, Date &d)
-{
-	os << setw(4) << setfill('0') << d.getYear() << '-'
-	   << setw(2) << setfill('0') << d.getMonth() << '-'
-	   << setw(2) << setfill('0') << d.getDay();
-	return os;
-}
-
-// Input operator>> for reading Date from input stream
-std::istream &operator>>(std::istream &is, Date &date)
-{
-	int y=0, m=0, d=0;
-	char dash = '-';
-	int numbers;
-	if (is >> y >> dash >> m >> dash >> d && date.validDate(y, m , d))
-	{
-		date = Date(y, m, d);
-	}
-	else {
-		is.setstate(std::ios_base::failbit);
-	}
-	return is;
-}
-
 /*
  * Prints the date d in the format yyyy-mm-dd. You shall replace this
  * function with an overloaded operator<<, and add an overloaded operator>>.
