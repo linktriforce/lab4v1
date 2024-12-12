@@ -6,22 +6,36 @@
 
 using size_type = std::string::size_type;
 
-void tagRemover(std::string &line)
+void tagRemover(std::string &line, bool &in_tag)
 {
-    size_type start_pos;
+    size_type start_pos = 0;
     size_type end_pos = 0;
     while (!line.empty() && end_pos != std::string::npos)
     {
         start_pos = line.find_first_of('<');
         end_pos = line.find_first_of('>');
-        if (end_pos != std::string::npos)
+        if (start_pos != std::string::npos || in_tag)
         {
-            line.erase(start_pos, end_pos - start_pos + 1);
+            if (start_pos != std::string::npos && start_pos > end_pos)
+            {
+                line.erase(0, end_pos + 1);
+                in_tag = false;
+            }
+            else if (end_pos != std::string::npos && end_pos != std::string::npos)
+            {
+                line.erase(start_pos, end_pos - start_pos + 1);
+                in_tag = false;
+            }
+            else
+            {
+                line.erase(start_pos != std::string::npos ? start_pos : 0);
+                in_tag = true;
+            }
         }
     }
 }
 
-void replaceSign(std::string s, std::string sign, std::string&line)
+void replaceSign(std::string s, std::string sign, std::string &line)
 {
     size_type pos = 0;
     while ((pos = line.find(s, pos)) != std::string::npos)
@@ -42,9 +56,10 @@ TagRemover::TagRemover(std::istream &is)
 {
     // Read from the input stream (for example, cin)
     std::string line;
+    bool in_tag;
     while (std::getline(is, line) && line != "exit")
     {
-        tagRemover(line);
+        tagRemover(line, in_tag);
         specialSignRemover(line);
 
         if (!line.empty())

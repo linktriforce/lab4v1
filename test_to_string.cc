@@ -1,5 +1,5 @@
 #include "to_string_template.h"
-// #include "date.h"
+#include "date.h"
 
 bool testToString() {
     double d{1.234};
