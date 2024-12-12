@@ -14,13 +14,11 @@ bool testToString() {
     std::cout << "toString used on a vector<int>:" << "\n";
     std::cout << toString(vint) << std::endl;
     
-#if 0
-    //TODO: To be done when A3 has been done. Make sure to include date.h
     Date today;
     std::string dateString = toString(today);
     std::cout << "toString used on a Date" << "\n";
     std::cout << dateString << std::endl;
-#endif
+
     return true;
 }
 
