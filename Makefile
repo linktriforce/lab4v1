@@ -25,7 +25,7 @@ LDFLAGS += -fsanitize=address
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = tag_remover test_find_primes print_primes
+PROGS = tag_remover test_find_primes print_primes test_to_string
 
 all: $(PROGS)
 
@@ -39,6 +39,8 @@ find_primes: find_primes.o
 test_find_primes: test_find_primes.o find_primes.o
 
 print_primes: find_primes.o print_primes.o
+
+test_to_string: test_to_string.o date.o
 
 # Phony targets
 .PHONY: all test clean distclean
