@@ -16,11 +16,13 @@ void tagRemover(std::string &line, bool &in_tag)
         end_pos = line.find_first_of('>');
         if (start_pos != std::string::npos || in_tag)
         {
+            //När tagen fortsätter på nästa rad
             if (start_pos != std::string::npos && start_pos > end_pos)
             {
                 line.erase(0, end_pos + 1);
                 in_tag = false;
             }
+            //När en hel tag finns i en rad
             else if (end_pos != std::string::npos && end_pos != std::string::npos)
             {
                 line.erase(start_pos, end_pos - start_pos + 1);
@@ -28,6 +30,8 @@ void tagRemover(std::string &line, bool &in_tag)
             }
             else
             {
+                //Första fallet, '<', ta bort allt efter.
+                //Andra fallet om inte taggen stängts, ta bort hela raden.
                 line.erase(start_pos != std::string::npos ? start_pos : 0);
                 in_tag = true;
             }
